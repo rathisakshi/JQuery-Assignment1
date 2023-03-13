@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+</head>
+
+<body>
+    <h1>Jquery tutorial</h1>
+
+    <input type="text" id="number" placeholder="Enter your phone number">
+    <button> Submit</button>
+    <script>
+        $(document).ready(function () {
+            $('#number').keypress(function (e) {
+
+                var charCode = (e.which) ? e.which : event.keyCode
+
+                if (String.fromCharCode(charCode).match(/[^0-9]/g))
+
+                    return false;
+
+            });
+            $("button").click(function () {
+
+                var fn = $("#number").val();
+                var regex = /^[0-9]{10}$/g
+                var a = regex.test(fn);
+                if (a == true) {
+                    alert("phone number submitted");
+                }
+                else {
+                    alert("please enter a valid phone number");
+                }
+                // alert(regex.test(fn));
+            });
+        });
+    </script>
+</body>
+
+</html>
