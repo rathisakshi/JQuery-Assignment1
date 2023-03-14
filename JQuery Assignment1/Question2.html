@@ -8,16 +8,22 @@
      <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <script>
-  
+   $(document).ready(function(){
+  $(".par").hover(function(){
+    $(this).css({"background-color":"white" , "color": "black" } );
+    }, function(){
+    $(this).css({"background-color":"white" , "color": "black" });
+  });
+});
 </script>
 
 </head> 
 </head>
 <body>
-    <div class="hov">
-       <p>"See how the color changes"</p>
-       <a href="https://www.sigmainfo.net">Sigma Infosolutions</a>
-       <button>Click here</button>
+    <div class="par"><p>Sakshi</p> <br> </div>
+    <div class="par"><p>Manoli</p> <br>  </div>
+    <div class="par"><p>Urmi</p> <br> </div>
+  
 
 
     </div>

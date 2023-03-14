@@ -1,45 +1,49 @@
+
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-</head>
-
+	<title>Country and State Dropdown</title>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	</head>
 <body>
-    <h1>Jquery tutorial</h1>
+	<label for="country">Select Country:</label>
+	<select id="country">
+		<option value="">-- Select Country --</option>
+	</select>
 
-    <input type="text" id="number" placeholder="Enter your phone number">
-    <button> Submit</button>
-    <script>
-        $(document).ready(function () {
-            $('#number').keypress(function (e) {
+	<label for="state">Select State:</label>
+	<select id="state">
+		<option value="">-- Select State --</option>
+	</select>
+  <script>
+		$(document).ready(function() {
+			var countryList = [
+				{ name: "USA", states: ["Alabama", "Alaska", "Arizona", "Arkansas", "California"] },
+				{ name: "Canada", states: ["Alberta", "British Columbia", "Manitoba", "Ontario", "Quebec"] },
+				{ name: "Australia", states: ["New South Wales", "Queensland", "South Australia", "Tasmania", "Victoria"] },
+				{ name: "India", states: ["Andhra Pradesh", "Karnataka", "Kerala", "Maharashtra", "Tamil Nadu"] },
+				{ name: "United Kingdom", states: ["England", "Northern Ireland", "Scotland", "Wales"] }
+			];
 
-                var charCode = (e.which) ? e.which : event.keyCode
+			var countryDropdown = $('#country');
+			$.each(countryList, function(index, country) {
+				countryDropdown.append('<option value="' + country.name + '">' + country.name + '</option>');
+			});
 
-                if (String.fromCharCode(charCode).match(/[^0-9]/g))
+			$('#country').change(function() {
+				var selectedCountry = $('#country').val();
+				var stateDropdown = $('#state');
+				stateDropdown.empty(); // clear previous options
 
-                    return false;
-
-            });
-            $("button").click(function () {
-
-                var fn = $("#number").val();
-                var regex = /^[0-9]{10}$/g
-                var a = regex.test(fn);
-                if (a == true) {
-                    alert("phone number submitted");
-                }
-                else {
-                    alert("please enter a valid phone number");
-                }
-                // alert(regex.test(fn));
-            });
-        });
-    </script>
+				$.each(countryList, function(index, country) {
+					if (country.name === selectedCountry) {
+						$.each(country.states, function(index, state) {
+							stateDropdown.append('<option value="' + state + '">' + state + '</option>');
+						});
+					}
+				});
+			});
+		});
+	</script>
 </body>
-
 </html>
